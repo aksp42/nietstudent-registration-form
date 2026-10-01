@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Student Registration Portal - register your details to create your student profile.">
+  <title>Student Registration Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#registrationForm">Skip to the registration form</a>
+
+  <div class="portal">
+
+    <!-- Left panel: identity and a short checklist -->
+    <aside class="portal-intro">
+      <header class="brand">
+        <svg class="crest" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path d="M24 8 3 19l21 11 21-11L24 8z"/>
+          <path d="M11 25v9c0 3 6.2 6 13 6s13-3 13-6v-9l-13 7-13-7z"/>
+          <path d="M45 19v14" fill="none"/>
+        </svg>
+        <h1>Student Registration Portal</h1>
+        <p class="subtitle">Register your details to create your student profile.</p>
+      </header>
+
+      <section class="checklist" aria-labelledby="ready-title">
+        <h2 id="ready-title">Keep these ready</h2>
+        <ul>
+          <li>Your student or roll number</li>
+          <li>A working email address and phone number</li>
+          <li>Your home address with PIN or ZIP code</li>
+        </ul>
+        <p class="time-note">Registration takes about three minutes.</p>
+      </section>
+
+      <footer class="intro-footer">
+        <p>This is a practical project. Your details stay in this browser and are not sent anywhere.</p>
+      </footer>
+    </aside>
+
+    <!-- Right panel: the form -->
+    <main class="portal-main">
+      <header class="form-header">
+        <h2>Create your student profile</h2>
+        <p>Fields marked with <span class="req" aria-hidden="true">*</span><span class="sr-only">an asterisk</span> are required.</p>
+      </header>
+
+      <div id="formStatus" class="status" role="status" aria-live="polite" hidden></div>
+
+      <form id="registrationForm" action="#" method="post" novalidate>
+
+        <!-- Personal details -->
+        <fieldset class="group">
+          <legend>Personal details</legend>
+          <div class="grid">
+
+            <div class="field field-wide">
+              <label for="fullName">Full name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="fullName" name="fullName" placeholder="e.g. Ananya Sharma"
+                     required minlength="3" maxlength="60"
+                     pattern="[A-Za-z][A-Za-z .'\-]{2,59}"
+                     title="3 to 60 letters. Spaces, dots, apostrophes and hyphens are allowed."
+                     autocomplete="name" aria-describedby="fullName-error">
+              <p class="error" id="fullName-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="email">Email address <span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" placeholder="name@college.edu"
+                     required maxlength="100"
+                     autocomplete="email" aria-describedby="email-error">
+              <p class="error" id="email-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone number <span class="req" aria-hidden="true">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number"
+                     required minlength="10" maxlength="10" pattern="[0-9]{10}" inputmode="numeric"
+                     title="Enter exactly 10 digits."
+                     autocomplete="tel" aria-describedby="phone-error">
+              <p class="error" id="phone-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="dob">Date of birth <span class="req" aria-hidden="true">*</span></label>
+              <input type="date" id="dob" name="dob" required min="1960-01-01"
+                     autocomplete="bday" aria-describedby="dob-error">
+              <p class="error" id="dob-error"></p>
+            </div>
+
+            <div class="field">
+              <span class="label" id="gender-label">Gender <span class="req" aria-hidden="true">*</span></span>
+              <div class="segmented" id="gender" role="radiogroup" aria-labelledby="gender-label" aria-describedby="gender-error">
+                <input type="radio" id="genderMale" name="gender" value="Male" required>
+                <label for="genderMale">Male</label>
+                <input type="radio" id="genderFemale" name="gender" value="Female" required>
+                <label for="genderFemale">Female</label>
+                <input type="radio" id="genderOther" name="gender" value="Other" required>
+                <label for="genderOther">Other</label>
+              </div>
+              <p class="error" id="gender-error"></p>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- Academic details -->
+        <fieldset class="group">
+          <legend>Academic details</legend>
+          <div class="grid">
+
+            <div class="field">
+              <label for="rollNumber">Student / roll number <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="rollNumber" name="rollNumber" placeholder="e.g. 2301234"
+                     required minlength="4" maxlength="20"
+                     pattern="[A-Za-z0-9\-\/]{4,20}"
+                     title="4 to 20 letters, digits, hyphens or slashes."
+                     autocomplete="off" aria-describedby="rollNumber-error">
+              <p class="error" id="rollNumber-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="course">Course <span class="req" aria-hidden="true">*</span></label>
+              <select id="course" name="course" required aria-describedby="course-error">
+                <option value="" selected disabled>Select your course</option>
+                <option value="BCA">BCA</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="MCA">MCA</option>
+                <option value="MBA">MBA</option>
+              </select>
+              <p class="error" id="course-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="department">Department <span class="req" aria-hidden="true">*</span></label>
+              <select id="department" name="department" required aria-describedby="department-error">
+                <option value="" selected disabled>Select your department</option>
+                <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                <option value="CSE (Data Science)">CSE (Data Science)</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics and Communication">Electronics and Communication</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Management Studies">Management Studies</option>
+              </select>
+              <p class="error" id="department-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="semester">Year / semester <span class="req" aria-hidden="true">*</span></label>
+              <select id="semester" name="semester" required aria-describedby="semester-error">
+                <option value="" selected disabled>Select your semester</option>
+                <option value="1">Year 1, Semester 1</option>
+                <option value="2">Year 1, Semester 2</option>
+                <option value="3">Year 2, Semester 3</option>
+                <option value="4">Year 2, Semester 4</option>
+                <option value="5">Year 3, Semester 5</option>
+                <option value="6">Year 3, Semester 6</option>
+                <option value="7">Year 4, Semester 7</option>
+                <option value="8">Year 4, Semester 8</option>
+              </select>
+              <p class="error" id="semester-error"></p>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- Address -->
+        <fieldset class="group">
+          <legend>Address</legend>
+          <div class="grid">
+
+            <div class="field field-wide">
+              <label for="address">Street address <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="address" name="address" rows="3" placeholder="House or flat number, street, area"
+                        required minlength="10" maxlength="200"
+                        autocomplete="street-address" aria-describedby="address-error"></textarea>
+              <p class="error" id="address-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="city">City <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="city" name="city" placeholder="e.g. Greater Noida"
+                     required minlength="2" maxlength="50"
+                     pattern="[A-Za-z][A-Za-z .'\-]{1,49}"
+                     title="Letters, spaces, dots, apostrophes and hyphens only."
+                     autocomplete="address-level2" aria-describedby="city-error">
+              <p class="error" id="city-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="state">State <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="state" name="state" placeholder="e.g. Uttar Pradesh"
+                     required minlength="2" maxlength="50"
+                     pattern="[A-Za-z][A-Za-z .'\-]{1,49}"
+                     title="Letters, spaces, dots, apostrophes and hyphens only."
+                     autocomplete="address-level1" aria-describedby="state-error">
+              <p class="error" id="state-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="pincode">PIN / ZIP code <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="pincode" name="pincode" placeholder="e.g. 201310"
+                     required minlength="5" maxlength="6" pattern="[0-9]{5,6}" inputmode="numeric"
+                     title="Enter 5 or 6 digits."
+                     autocomplete="postal-code" aria-describedby="pincode-error">
+              <p class="error" id="pincode-error"></p>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- Account security -->
+        <fieldset class="group">
+          <legend>Account security</legend>
+          <div class="grid">
+
+            <div class="field">
+              <label for="password">Password <span class="req" aria-hidden="true">*</span></label>
+              <input type="password" id="password" name="password" placeholder="Create a password"
+                     required minlength="8" maxlength="64"
+                     pattern="(?=.*[A-Za-z])(?=.*[0-9]).{8,64}"
+                     title="8 to 64 characters with at least one letter and one number."
+                     autocomplete="new-password" aria-describedby="password-hint password-error">
+              <p class="hint" id="password-hint">At least 8 characters, with a letter and a number.</p>
+              <p class="error" id="password-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="confirmPassword">Confirm password <span class="req" aria-hidden="true">*</span></label>
+              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password"
+                     required minlength="8" maxlength="64"
+                     autocomplete="new-password" aria-describedby="confirmPassword-error">
+              <p class="error" id="confirmPassword-error"></p>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- Terms and actions -->
+        <div class="field terms">
+          <div class="terms-row">
+            <input type="checkbox" id="terms" name="terms" required aria-describedby="terms-error">
+            <label for="terms">I agree to the Terms and Conditions and confirm that the details above are correct.</label>
+          </div>
+          <p class="error" id="terms-error"></p>
+        </div>
+
+        <div class="actions">
+          <button type="submit" id="registerBtn" class="btn btn-primary">Register</button>
+          <button type="reset" id="resetBtn" class="btn btn-secondary">Clear form</button>
+        </div>
+
+      </form>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
